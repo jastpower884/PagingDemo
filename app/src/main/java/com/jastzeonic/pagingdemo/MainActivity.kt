@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         val redditApi = RedditApi.create()
 
-        val pageSize = 30
+        val pageSize = 10
 
 
         val sourceFactory = SubRedditDataSourceFactory(redditApi, "androidDev", NETWORK_IO)
@@ -41,8 +41,7 @@ class MainActivity : AppCompatActivity() {
                 .setFetchExecutor(NETWORK_IO)
                 .build()
 
-        val adapter = PostsAdapter({
-        })
+        val adapter = PostsAdapter()
 
         val list = findViewById<RecyclerView>(R.id.recyclerView)
 

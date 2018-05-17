@@ -23,16 +23,13 @@ import com.jastzeonic.pagingdemo.vo.RedditPost
 import com.jastzeonic.pagingdemo.api.RedditApi
 
 
-
 /**
  * A simple data source factory which also provides a way to observe the last created data source.
  * This allows us to channel its network request status etc back to the UI. See the Listing creation
  * in the Repository class.
  */
-class SubRedditDataSourceFactory(
-        private val redditApi: RedditApi,
-        private val subredditName: String,
-        private val retryExecutor: Executor) : DataSource.Factory<String, RedditPost>() {
+class SubRedditDataSourceFactory(private val redditApi: RedditApi, private val subredditName: String,
+                                 private val retryExecutor: Executor) : DataSource.Factory<String, RedditPost>() {
     val sourceLiveData = MutableLiveData<ItemKeyedSubredditDataSource>()
     override fun create(): DataSource<String, RedditPost> {
         val source = ItemKeyedSubredditDataSource(redditApi, subredditName, retryExecutor)

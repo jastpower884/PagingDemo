@@ -25,7 +25,7 @@ import com.jastzeonic.pagingdemo.vo.RedditPost
 /**
  * A simple adapter implementation that shows Reddit posts.
  */
-class PostsAdapter(private val retryCallback: () -> Unit)
+class PostsAdapter()
     : PagedListAdapter<RedditPost, RecyclerView.ViewHolder>(POST_COMPARATOR) {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as RedditPostViewHolder).bind(getItem(position))
@@ -44,7 +44,12 @@ class PostsAdapter(private val retryCallback: () -> Unit)
         return RedditPostViewHolder.create(parent)
     }
 
+    override fun getItemCount(): Int {
 
+        val count = super.getItemCount()
+
+        return  count
+    }
 
 
     companion object {

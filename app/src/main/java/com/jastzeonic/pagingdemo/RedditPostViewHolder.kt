@@ -24,6 +24,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.jastzeonic.pagingdemo.R
 import com.jastzeonic.pagingdemo.vo.RedditPost
 
@@ -53,7 +54,14 @@ class RedditPostViewHolder(view: View)
         subtitle.text = itemView.context.resources.getString(R.string.post_subtitle,
                 post?.author ?: "unknown")
         score.text = "${post?.score ?: 0}"
-        thumbnail.visibility = View.GONE
+        if (post?.thumbnail?.startsWith("http") == true) {
+            thumbnail.visibility = View.VISIBLE
+
+            Glide.with(thumbnail.context).load(post.thumbnail).into(thumbnail)
+
+        } else {
+            thumbnail.visibility = View.GONE
+        }
     }
 
     companion object {
